@@ -1,0 +1,287 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="DarkStudios - Criadores de The Last Night, um jogo de terror em primeira pessoa baseado em fatos reais">
+    <meta property="og:image" content="imagens/DarkStudios.jpeg">
+    <link rel="icon" href="imagens/DarkStudios.jpeg" type="image/x-icon">
+    <title>DarkStudios</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset e estilos gerais */
+        body, html {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #0d0b0b; /* Fundo preto */
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        /* Container Principal */
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        /* Logo no centro */    
+        .logo{
+            margin: 50px auto;
+            max-width: 300px;
+            transition: transform 0.3s;
+        }
+        .logo img{
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.4);
+            border: 1px solid #7a1e26;
+        }
+        .logo:hover{
+            transform: scale(1.05);
+        }
+
+        /* Redes Sociais */
+        .social-links{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .social-links a{
+            color: #fff;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .social-links a:hover{
+            color: #e63946;
+            transform: translateY(-3px);
+        }
+        .social-links .social-text{
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Frase Icônica */
+        .tagline {
+            font-size: 28px;
+            margin-bottom: 50px;
+            padding: 0 20px;
+            font-style: italic;
+            color: #e63946;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .tagline p {
+            margin: 0;
+            display: inline-block;
+            padding: 0 10px;
+            border-radius: 5px;
+        }
+
+        /* Seção do vídeo */
+        .video-section{
+            margin: 0 auto 50px;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .video-container{
+            position: relative;
+            padding-bottom: 56.25%; /* Proporção 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.8);
+            background: #000;
+            border: 2px solid #2b0609;
+        }
+        .video-container iframe{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-description{
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 3px solid #e63946;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .video-description p{
+            margin-bottom: 15px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        /* Botão de apoio */
+        .support-button{
+            display: inline-block;
+            background: linear-gradient(135deg, #2b0609, #741f26);
+            color: #fff;
+            padding: 18px 36px;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 22px;
+            box-shadow: 0 4px 15px rgba(228, 25, 42, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        .support-button:hover{
+            transform: translateY(-3px);   
+            box-shadow: 0 6px 20px rgba(255, 5, 25, 0.6);
+            background: linear-gradient(135deg, #c91222, #58171d);
+        }
+        .support-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+        .support-button:hover::after {
+            left: 100%;
+        }
+
+        /* Rodapé */
+        footer{
+            padding: 30px 0;
+            font-size: 14px;
+            margin-top: auto;
+            background-color: rgba(0,0,0,0.5);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Efeitos de transição */
+        * {
+            transition: all 0.3s ease;
+        }
+
+        /* Responsividade */
+        @media (max-width: 480px) {
+            .logo {
+                margin: 30px auto;
+                max-width: 180px;
+            }
+            .tagline {
+                font-size: 22px;
+            }
+            .social-links {
+                gap: 15px;
+            }
+            .social-links a {
+                font-size: 20px;
+            }
+            .video-description {
+                font-size: 16px;
+            }
+            .support-button {
+            padding: 15px 25px;
+            font-size: 18px;
+            }
+        }
+        @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+        }
+        .support-button {
+            animation: pulse 3s infinite;
+        }
+        .support-button:hover {
+            animation: none;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="imagens/DarkStudios.jpeg" alt="Logo da DarkStudios">
+        </div>
+        <div class="social-links">
+            <a href="https://www.TikTok.com/@darkstudios977?lang=pt-BR" target="_blank">
+                <i class="fab fa-tiktok"></i>
+                <span class="social-text">TikTok</span>
+            </a>
+            <a href="https://www.instagram.com/darkstudios_gamedev" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span class="social-text">Instagram</span>
+            </a>
+            <a href="https://x.com/DarkStudios_GD" target="_blank">
+                <i class="fab fa-twitter"></i>
+                <span class="social-text">Twitter</span>
+            </a>
+            <a href="https://discord.com/channels/1353901824079564830/1353901824641466460" target="_blank">
+                <i class="fab fa-discord"></i>
+                <span class="social-text">Discord</span>
+            </a>
+            <a href="https://www.youtube.com/@DarkStudios-e1n" target="_blank">
+                <i class="fab fa-youtube"></i>
+                <span class="social-text">YouTube</span>
+            </a>
+        </div>
+
+        <div class="tagline">
+            <p>"Uma noite, Uma chance"</p>
+        </div>
+        <div class="video-section">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/PRC_iexsNQk" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-description">
+                <p>The Last Night é um jogo de terror em primeira pessoa baseado em fatos reais</p>
+                <p>Siga a história de Mike, um jovem que viajou pela região serrana com seus amigos
+                    em busca de diversão, mas acabou encontrando morte, sangue, e terror. 
+                    <p>Agora Mike
+                        corre para sobreviver perante a vastidão da floresta enquanto é perseguido por figuras desconhecidas.</p>
+                </p>
+            </div>    
+        </div>
+
+        <div class="button-container">
+            <a href="https://www.catarse.me/the_last_night_b4c2" 
+            class="support-button" target="_blank">Nos Apoie</a>
+        </div>
+
+        <footer>
+            Copyright © 2025 DarkStudios LTDA. All rights reserved.
+        </footer>
+    </div>
+</body>
+</html>
